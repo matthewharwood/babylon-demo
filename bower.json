@@ -1,0 +1,20 @@
+{
+  "name": "demo-v1",
+  "version": "0.0.0",
+  "authors": [
+    "matthew harwood <mharwood@google.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "babylonjs": "~2.0.0",
+    "cannon.js": "~0.6.2",
+    "jquery": "~2.1.4"
+  }
+}

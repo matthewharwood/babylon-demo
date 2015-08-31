@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Babylon</title>
+    <script src="./bower_components/babylonjs/babylon.2.1-beta.js"></script>
+    <style>
+        html,body,canvas {
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <canvas id="Chrome"></canvas>
+    <script>
+        var c = document.getElementById('Chrome');
+        var Engine = new BABYLON.Engine(c, true);
+        var Scene = new BABYLON.Scene(Engine);
+        var Camera = new BABYLON.ArcRotateCamera("Camera", 1,2,20, new BABYLON.Vector3(0,0,0), Scene);
+        var Light0 = new BABYLON.PointLight("Omni", new BABYLON.Vector3(0,0,10), Scene);
+        var Ball = BABYLON.Mesh.CreateSphere("Ball", 10,1.0, Scene);
+        var Plane =  BABYLON.Mesh.CreatePlane("Plane", 10.0, Scene);
+        Plane.rotation.y = Math.PI;
+        Plane.position.z = -1;
+//        Ball.position.x = -5;
+        Scene.activeCamera.attachControl(c);
+
+        Engine.runRenderLoop(function(){
+            Scene.render();
+        });
+        window.addEventListener("resize",function(){
+            Engine.resize();
+        })
+
+    </script>
+</body>
+</html>
