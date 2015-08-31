@@ -5,7 +5,7 @@
     <title>Babylon</title>
     <script src="./bower_components/babylonjs/babylon.2.1-beta.js"></script>
     <script src="./bower_components/jquery/dist/jquery.js"></script>
-    <script src="bower_components/oimo/Oimo.js"></script>
+    <script src="./bower_components/oimo/Oimo.js"></script>
     <style>
         html,body,canvas {
             width: 100%;
@@ -27,10 +27,10 @@
 
     //Physics!!!
     Scene.enablePhysics();
-    Scene.setGravity(new BABYLON.Vector3(0, -8, 0));
+    Scene.setGravity(new BABYLON.Vector3(1, -8, 1));
 
     //cameras
-//    var Camera = new BABYLON.ArcRotateCamera("Camera", 1, 1, 40, new BABYLON.Vector3(0, 0, 0), Scene);
+    //    var Camera = new BABYLON.ArcRotateCamera("Camera", 1, 1, 40, new BABYLON.Vector3(0, 0, 0), Scene);
 
 
     //lights
@@ -46,12 +46,12 @@
     //sphere parameters are: name, number of segments (highly detailed or not), size, scene to attach the mesh.
     var ball = BABYLON.Mesh.CreateSphere("Ball", 10, 1.0, Scene);
     ball.position.x = -5; //position mesh
-
+    ball.setPhysicsState({ impostor: BABYLON.PhysicsEngine.BoxImpostor, mass: 1, friction: 0.5, restitution: 0.7 });
     //box parameters are: name, size of the box, the scene to attach the mesh.
     var box = BABYLON.Mesh.CreateBox("Box", 1, Scene);
     box.position.x = -9.5; //position mesh
     box.position.y = 2.2; //position mesh
-
+    box.setPhysicsState({ impostor: BABYLON.PhysicsEngine.BoxImpostor, mass: 1, friction: 0.5, restitution: 0.7 });
 
     var box2 = BABYLON.Mesh.CreateBox("Box2", 1, Scene);
     box2.position.x = -10; //position mesh
@@ -60,28 +60,23 @@
 
     var box3 = BABYLON.Mesh.CreateBox("Box3", 1, Scene);
     box3.position.x = -9.5; //position mesh
-
+    box3.setPhysicsState({ impostor: BABYLON.PhysicsEngine.BoxImpostor, mass: 1, friction: 0.5, restitution: 0.7 });
 
     //cylinder parameters are:
     //name, height, diameterTop, diameterBottom, tessellation (highly detailed or not), scene, updatable.
     var cylinder = BABYLON.Mesh.CreateCylinder("cylinder", 3, 3, 3, 20, Scene, false);
     cylinder.position.x = 15; //position mesh
-
+    cylinder.setPhysicsState({ impostor: BABYLON.PhysicsEngine.BoxImpostor, mass: 1, friction: 0.5, restitution: 0.7 });
 
 
     var Camera = new BABYLON.FollowCamera("FollowCam", new BABYLON.Vector3(1, 1, 40), Scene);
     Camera.target = box2; // target any mesh or object with a "position" Vector3
 
     Scene.activeCamera.attachControl(canvas);
+    console.log()
 
     engine.runRenderLoop(function () {
-        ball.setPhysicsState({ impostor: BABYLON.PhysicsEngine.BoxImpostor, mass: 1, friction: 0.5, restitution: 0.7 });
-        box.setPhysicsState({ impostor: BABYLON.PhysicsEngine.BoxImpostor, mass: 1, friction: 0.5, restitution: 0.7 });
-        box3.setPhysicsState({ impostor: BABYLON.PhysicsEngine.BoxImpostor, mass: 1, friction: 0.5, restitution: 0.7 });
-        cylinder.setPhysicsState({ impostor: BABYLON.PhysicsEngine.BoxImpostor, mass: 1, friction: 0.5, restitution: 0.7 });
         box2.setPhysicsState({ impostor: BABYLON.PhysicsEngine.BoxImpostor, mass: 1, friction: 0.5, restitution: 0.7 });
-
-
         Scene.render();
     });
 
@@ -93,11 +88,21 @@
             console.log(e.keyCode)
             if (e.keyCode == '32') {
                 box2.position.y = 1.1;
-
             }
             if (e.keyCode == '37') {
 
-                box2.position.x = 1.0;
+
+                box2.position.x += 1;
+            }
+            if (e.keyCode == '40') {
+
+
+                box2.position.z += 1;
+            }
+            if (e.keyCode == '38') {
+
+
+                box2.position.z -= 1;
             }
         });
     });
