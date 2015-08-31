@@ -5,7 +5,7 @@
     <title>Babylon</title>
     <script src="./bower_components/babylonjs/babylon.2.1-beta.js"></script>
     <script src="./bower_components/jquery/dist/jquery.js"></script>
-    <script src="./Oimo.js/build/Oimo.js"></script>
+    <script src="bower_components/oimo/Oimo.js"></script>
     <style>
         html,body,canvas {
             width: 100%;
@@ -73,13 +73,15 @@
     Camera.target = box2; // target any mesh or object with a "position" Vector3
 
     Scene.activeCamera.attachControl(canvas);
-    console.log()
+
     engine.runRenderLoop(function () {
         ball.setPhysicsState({ impostor: BABYLON.PhysicsEngine.BoxImpostor, mass: 1, friction: 0.5, restitution: 0.7 });
         box.setPhysicsState({ impostor: BABYLON.PhysicsEngine.BoxImpostor, mass: 1, friction: 0.5, restitution: 0.7 });
         box3.setPhysicsState({ impostor: BABYLON.PhysicsEngine.BoxImpostor, mass: 1, friction: 0.5, restitution: 0.7 });
         cylinder.setPhysicsState({ impostor: BABYLON.PhysicsEngine.BoxImpostor, mass: 1, friction: 0.5, restitution: 0.7 });
         box2.setPhysicsState({ impostor: BABYLON.PhysicsEngine.BoxImpostor, mass: 1, friction: 0.5, restitution: 0.7 });
+
+
         Scene.render();
     });
 
@@ -94,8 +96,8 @@
 
             }
             if (e.keyCode == '37') {
-                box2.position.x += 1;
 
+                box2.position.x = 1.0;
             }
         });
     });
